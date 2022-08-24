@@ -8,7 +8,7 @@ public class HolaMundoController {
 
     @GetMapping("/hello")
     public String sayHello() {
-        return String.format("Hello moto!");
+        return String.format("Hello world!");
     }
 
 }
