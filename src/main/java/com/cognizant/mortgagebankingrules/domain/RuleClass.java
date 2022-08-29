@@ -22,4 +22,8 @@ public class RuleClass {
 
     }
 
+    public void addRule(){
+
+    }
+
 }
