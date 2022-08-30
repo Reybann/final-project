@@ -30,8 +30,9 @@ public class RuleDomainService implements RuleClassService {
     }
 
     @Override
-    public void removeRuleClass(UUID id) {
+    public UUID removeRuleClass(UUID id) {
         repository.removeById(id);
+        return id;
     }
 
 
