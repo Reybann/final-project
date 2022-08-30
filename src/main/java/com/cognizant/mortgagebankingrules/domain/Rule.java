@@ -4,21 +4,29 @@ import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Entity
-public class RuleClass {
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+@Entity
+public class Rule {
     @Id
-    @GeneratedValue
     private UUID id;
-    @Column(name = "name", nullable = false)
+    @Column(name="name", nullable = false)
     private String name;
-    @Column(name = "duration", nullable = false)
+    @Column(name="duration", nullable = false)
     private int duration;
-    @Column(name = "enabled", nullable = false)
+    @Column(name="enabled", nullable = false)
     private boolean enabled;
+
+    @JsonCreator
+    public Rule(@JsonProperty("id")UUID id, @JsonProperty("name")String name, @JsonProperty("enabled") boolean enabled, @JsonProperty("duration")int duration) {
+        this.id = id;
+        this.name = name;
+        this.enabled = enabled;
+        this.duration = duration;
+    }
 
     public UUID getId() {
         return id;
@@ -28,12 +36,16 @@ public class RuleClass {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public int getDuration() {
@@ -48,18 +60,10 @@ public class RuleClass {
         return enabled;
     }
 
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
-    public void createClass(final Rule rule){
-
-    }
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + duration;
         result = prime * result + (enabled ? 1231 : 1237);
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((name == null) ? 0 : name.hashCode());
@@ -74,9 +78,7 @@ public class RuleClass {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        RuleClass other = (RuleClass) obj;
-        if (duration != other.duration)
-            return false;
+        Rule other = (Rule) obj;
         if (enabled != other.enabled)
             return false;
         if (id == null) {
@@ -91,5 +93,15 @@ public class RuleClass {
             return false;
         return true;
     }
-    private RuleClass(){}
+
+    public Rule(UUID id, String name, int duration, boolean enabled) {
+        this.id = id;
+        this.name = name;
+        this.duration = duration;
+        this.enabled = enabled;
+    }
+
+    public Rule() {
+    }
+    
 }
