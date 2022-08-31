@@ -1,0 +1,1 @@
+CREATE TABLE rule_class(id Long auto_increment,name varchar, duration int, enabled boolean, PRIMARY KEY(id));
