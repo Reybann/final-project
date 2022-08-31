@@ -2,9 +2,11 @@ package com.cognizant.mortgagebankingrules.domain.services;
 
 import java.util.UUID;
 
+import org.springframework.stereotype.Service;
+
 import com.cognizant.mortgagebankingrules.domain.Rule;
 import com.cognizant.mortgagebankingrules.domain.repositories.RuleClassRepository;
-
+@Service
 public class RuleDomainService implements RuleClassService {
 
     private final RuleClassRepository repository;
