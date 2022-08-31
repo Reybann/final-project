@@ -23,12 +23,14 @@ public class RuleDomainService implements RuleClassService {
     }
 
     @Override
-    public void updateRuleClass(UUID id, String name, int duration, boolean enabled) {
-        final Rule rule = repository.findById(id).orElse(new Rule(id, name, enabled, duration));
+    public Rule updateRuleClass(String id, String name, int duration, boolean enabled) {
+        UUID uid = UUID.fromString(id);
+        final Rule rule = repository.findById(uid).orElse(new Rule(uid, name, enabled, duration));
         rule.setName(name);
         rule.setDuration(duration);
         rule.setEnabled(enabled);
         repository.save(rule);
+        return rule;
     }
 
     @Override

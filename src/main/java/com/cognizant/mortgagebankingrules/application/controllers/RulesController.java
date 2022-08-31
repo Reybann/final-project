@@ -2,8 +2,7 @@ package com.cognizant.mortgagebankingrules.application.controllers;
 
 import com.cognizant.mortgagebankingrules.application.response.UpdateRuleResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.cognizant.mortgagebankingrules.application.response.CreateRuleResponse;
 import com.cognizant.mortgagebankingrules.domain.services.RuleClassService;
