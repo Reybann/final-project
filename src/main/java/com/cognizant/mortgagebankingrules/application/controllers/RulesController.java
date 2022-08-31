@@ -24,7 +24,7 @@ public class RulesController {
         this.ruleClassService = ruleClassService;
     }
 
-    @PostMapping(value="/createRule")
+    @PostMapping(value="/createrule")
     public CreateRuleResponse createRule(@RequestParam String name, @RequestParam int duration, @RequestParam boolean enabled) {
         return new CreateRuleResponse(ruleClassService.createRuleClass(name, duration, enabled));
     }
