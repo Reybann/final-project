@@ -58,10 +58,6 @@ public class RuleClass {
         this.enabled = enabled;
     }
 
-    public void createClass(final Rule rule) {
-
-    }
-
     @Override
     public int hashCode() {
         final int prime = 31;

@@ -1,6 +1,5 @@
 package com.cognizant.mortgagebankingrules.application.controllers;
 
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,7 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cognizant.mortgagebankingrules.application.response.CreateRuleResponse;
 import com.cognizant.mortgagebankingrules.domain.services.RuleClassService;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 

@@ -20,7 +20,7 @@ public class Rule {
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "id", updatable = false, nullable = false, columnDefinition = "uuid")
     @Type(type = "org.hibernate.type.UUIDCharType")
-    private UUID id;
+    private UUID id ;
     @Column(name = "name", nullable = false)
     private String name;
     @Column(name = "duration", nullable = false)

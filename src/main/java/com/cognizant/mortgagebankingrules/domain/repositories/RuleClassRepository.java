@@ -1,7 +1,6 @@
 package com.cognizant.mortgagebankingrules.domain.repositories;
 
 import com.cognizant.mortgagebankingrules.domain.Rule;
-import com.cognizant.mortgagebankingrules.domain.Rule;
 import com.cognizant.mortgagebankingrules.domain.RuleClass;
 
 import java.util.Optional;

@@ -1,1 +1,0 @@
-CREATE TABLE prueba(id Long auto_increment,name varchar, duration int, enabled boolean, PRIMARY KEY(id));

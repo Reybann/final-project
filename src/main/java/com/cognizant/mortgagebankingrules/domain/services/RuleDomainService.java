@@ -38,7 +38,7 @@ public class RuleDomainService implements RuleClassService {
 
 
     public Rule getRule(UUID id) {
-        return repository.findById(id).get();
+       return repository.findById(id).orElseThrow(() -> new IllegalArgumentException("No rule found with id " + id));
     }
 
 }
