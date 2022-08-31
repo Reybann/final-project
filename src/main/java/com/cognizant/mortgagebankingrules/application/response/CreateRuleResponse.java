@@ -1,18 +1,17 @@
 package com.cognizant.mortgagebankingrules.application.response;
 
-import java.util.UUID;
+
+import com.cognizant.mortgagebankingrules.domain.Rule;
 
 public class CreateRuleResponse {
 
-    private final UUID id;
+   final  Rule rule;
 
-    public CreateRuleResponse(UUID id) {
-        this.id = id;
+    public CreateRuleResponse(Rule rule) {
+        this.rule = rule;
     }
-
-    public UUID getId() {
-        return id;
+    
+    public Rule getRule() {
+        return rule;
     }
-
-
 }

@@ -16,10 +16,10 @@ public class RuleDomainService implements RuleClassService {
     }
 
     @Override
-    public UUID createRuleClass(String name, int duration, boolean enabled) {
+    public Rule createRuleClass(String name, int duration, boolean enabled) {
         final Rule rule = new Rule(UUID.randomUUID(), name, enabled, duration);
         repository.save(rule);
-        return rule.getId();
+        return rule;
     }
 
     @Override
