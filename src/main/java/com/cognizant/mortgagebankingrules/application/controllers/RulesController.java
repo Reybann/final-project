@@ -2,6 +2,7 @@ package com.cognizant.mortgagebankingrules.application.controllers;
 
 import java.util.UUID;
 
+import com.cognizant.mortgagebankingrules.application.response.GetRuleResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,6 +28,12 @@ public class RulesController {
     @PostMapping(value="/createRule")
     public CreateRuleResponse createRule(@RequestParam String name, @RequestParam int duration, @RequestParam boolean enabled) {
         return new CreateRuleResponse(ruleClassService.createRuleClass(name, duration, enabled));
+    }
+
+    @GetMapping(value="/getRuleById")
+    public GetRuleResponse ruleResponse(@RequestParam UUID id){
+        System.out.println("GetRuleResponse");
+        return new GetRuleResponse(ruleClassService.getRule(id));
     }
 
 }
