@@ -2,9 +2,11 @@ package com.cognizant.mortgagebankingrules.domain.services;
 
 import java.util.UUID;
 
+import org.springframework.stereotype.Service;
+
 import com.cognizant.mortgagebankingrules.domain.Rule;
 import com.cognizant.mortgagebankingrules.domain.repositories.RuleClassRepository;
-
+@Service
 public class RuleDomainService implements RuleClassService {
 
     private final RuleClassRepository repository;
@@ -14,10 +16,10 @@ public class RuleDomainService implements RuleClassService {
     }
 
     @Override
-    public UUID createRuleClass(String name, int duration, boolean enabled) {
+    public Rule createRuleClass(String name, int duration, boolean enabled) {
         final Rule rule = new Rule(UUID.randomUUID(), name, enabled, duration);
         repository.save(rule);
-        return rule.getId();
+        return rule;
     }
 
     @Override
@@ -38,7 +40,7 @@ public class RuleDomainService implements RuleClassService {
 
 
     public Rule getRule(UUID id) {
-        return repository.findById(id).get();
+       return repository.findById(id).orElseThrow(() -> new IllegalArgumentException("No rule found with id " + id));
     }
 
 }

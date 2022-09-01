@@ -9,10 +9,10 @@ import com.cognizant.mortgagebankingrules.domain.repositories.RuleClassRepositor
 import com.cognizant.mortgagebankingrules.domain.services.RuleClassService;
 import com.cognizant.mortgagebankingrules.domain.services.RuleDomainService;
 
+
 @Configuration
 @ComponentScan(basePackageClasses = Application.class)
 public class BeanConfiguration {
-
         @Bean
         public RuleClassService ruleClassService(final RuleClassRepository repository) {
                 return new RuleDomainService(repository);

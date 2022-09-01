@@ -12,17 +12,16 @@ import org.hibernate.annotations.Type;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
+
 
 @Entity
 public class Rule {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "id", updatable = false, nullable = false)
+    @Column(name = "id", updatable = false, nullable = false, columnDefinition = "uuid")
     @Type(type = "org.hibernate.type.UUIDCharType")
-    private UUID id;
+    private UUID id ;
     @Column(name = "name", nullable = false)
     private String name;
     @Column(name = "duration", nullable = false)
