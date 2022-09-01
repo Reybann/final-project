@@ -9,7 +9,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.cognizant.mortgagebankingrules.application.controllers.RulesController;
 import com.cognizant.mortgagebankingrules.domain.Rule;
-import com.cognizant.mortgagebankingrules.domain.services.RuleDomainService;
+import com.cognizant.mortgagebankingrules.domain.services.RuleClassService;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -22,19 +22,40 @@ public class ControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private RuleDomainService ruleService;
+    private RuleClassService ruleService;
 
     @Test
     public void testCreateRule() throws Exception {
 
-        Mockito.doReturn(new Rule(
-                UUID.randomUUID(),
-                "test",
-                true,
-                1)).when(ruleService).createRuleClass("name", 1, true);
+        Rule rule = Rule.builder().id(UUID.randomUUID()).name("rule1").enabled(true).duration(3).build();
 
-        mockMvc.perform(post("/rules/createrule").param(
-                "name", "name").param("duration", "1").param("enabled", "true"))
-                .andExpect(status().isOk());
+        Mockito.when(ruleService.createRuleClass(rule)).thenReturn(rule);
+
+        mockMvc.perform(post("/rules/createrule").contentType("application/json").content(
+                "{\"id\":\"" + rule.getId() + "\",\"name\":\"" + rule.getName() + "\",\"enabled\":\"" + rule.isEnabled()
+                        + "\",\"duration\":\"" + rule.getDuration() + "\"}")).andExpect(status().isOk());
+    }
+
+    @Test
+    public void testCreateRule_fail_badRequest() throws Exception {
+
+        Rule rule = Rule.builder().id(UUID.randomUUID()).name("rule1").enabled(true).duration(3).build();
+
+        Mockito.when(ruleService.createRuleClass(rule)).thenReturn(rule);
+
+        mockMvc.perform(post("/rules/createrule").contentType("application/json").content(
+                "{\"id\":\"" + rule.getId() + "\",\"name\":\"" + rule.getName() + "\",\"enabled\":\"" + rule.isEnabled()
+                        + "\",\"duration\":\"" + "rule.getDuration()" + "\"}")).andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void testCreateRule_fail_notFound() throws Exception {
+
+        Rule rule = Rule.builder().id(UUID.randomUUID()).name("rule1").enabled(true).duration(3).build();
+
+        Mockito.when(ruleService.createRuleClass(rule)).thenReturn(rule);
+        mockMvc.perform(post("/rules/createrules").contentType("application/json").content(
+                "{\"id\":\"" + rule.getId() + "\",\"name\":\"" + rule.getName() + "\",\"enabled\":\"" + rule.isEnabled()
+                        + "\",\"duration\":\"" + rule.getDuration() + "\"}")).andExpect(status().isNotFound());
     }
 }
