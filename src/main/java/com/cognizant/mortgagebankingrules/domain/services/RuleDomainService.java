@@ -17,7 +17,7 @@ public class RuleDomainService implements RuleClassService {
 
     @Override
     public Rule createRuleClass(String name, int duration, boolean enabled) {
-        final Rule rule = new Rule(UUID.randomUUID(), name, enabled, duration);
+        final Rule rule = new Rule(null, name, enabled, duration);
         repository.save(rule);
         return rule;
     }
