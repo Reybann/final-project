@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RuleClassRepository extends JpaRepository<RuleClass,Long> {
-    void save(Rule rule);
+    Rule save(Rule rule);
     Optional<Rule> findById(UUID id);
     void removeById(UUID id);
 }
