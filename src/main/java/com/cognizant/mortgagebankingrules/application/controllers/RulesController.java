@@ -1,10 +1,8 @@
 package com.cognizant.mortgagebankingrules.application.controllers;
 
-import java.util.UUID;
-
+import com.cognizant.mortgagebankingrules.application.response.UpdateRuleResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.cognizant.mortgagebankingrules.application.response.CreateRuleResponse;
 import com.cognizant.mortgagebankingrules.application.response.RemoveRuleResponse;
@@ -12,6 +10,7 @@ import com.cognizant.mortgagebankingrules.domain.services.RuleClassService;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -26,9 +25,13 @@ public class RulesController {
         this.ruleClassService = ruleClassService;
     }
 
-    @PostMapping(value="/createRule")
+    @PostMapping(value="/createrule")
     public CreateRuleResponse createRule(@RequestParam String name, @RequestParam int duration, @RequestParam boolean enabled) {
         return new CreateRuleResponse(ruleClassService.createRuleClass(name, duration, enabled));
+    }
+    @PutMapping(value="/updaterule")
+    public UpdateRuleResponse updateRule(@RequestParam String id, @RequestParam String name, @RequestParam int duration, @RequestParam boolean enabled){
+        return new UpdateRuleResponse(ruleClassService.updateRuleClass(id, name, duration, enabled));
     }
 
     @DeleteMapping(value="/removeRule")

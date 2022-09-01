@@ -2,9 +2,11 @@ package com.cognizant.mortgagebankingrules.domain.services;
 
 import java.util.UUID;
 
+import org.springframework.stereotype.Service;
+
 import com.cognizant.mortgagebankingrules.domain.Rule;
 import com.cognizant.mortgagebankingrules.domain.repositories.RuleClassRepository;
-
+@Service
 public class RuleDomainService implements RuleClassService {
 
     private final RuleClassRepository repository;
@@ -14,19 +16,21 @@ public class RuleDomainService implements RuleClassService {
     }
 
     @Override
-    public UUID createRuleClass(String name, int duration, boolean enabled) {
+    public Rule createRuleClass(String name, int duration, boolean enabled) {
         final Rule rule = new Rule(UUID.randomUUID(), name, enabled, duration);
         repository.save(rule);
-        return rule.getId();
+        return rule;
     }
 
     @Override
-    public void updateRuleClass(UUID id, String name, int duration, boolean enabled) {
-        final Rule rule = repository.findById(id).orElse(new Rule(id, name, enabled, duration));
+    public Rule updateRuleClass(String id, String name, int duration, boolean enabled) {
+        UUID uid = UUID.fromString(id);
+        final Rule rule = repository.findById(uid).orElse(new Rule(uid, name, enabled, duration));
         rule.setName(name);
         rule.setDuration(duration);
         rule.setEnabled(enabled);
         repository.save(rule);
+        return rule;
     }
 
     @Override
@@ -37,7 +41,7 @@ public class RuleDomainService implements RuleClassService {
 
 
     public Rule getRule(UUID id) {
-        return repository.findById(id).get();
+       return repository.findById(id).orElseThrow(() -> new IllegalArgumentException("No rule found with id " + id));
     }
 
 }

@@ -7,7 +7,9 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface RuleClassRepository extends JpaRepository<RuleClass,Long> {
     void save(Rule rule);
     Optional<Rule> findById(UUID id);
