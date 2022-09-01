@@ -3,6 +3,7 @@ package com.cognizant.mortgagebankingrules;
 import java.util.UUID;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -23,7 +24,7 @@ public class RepositoryTest {
     public void setUp() {
         rule =  Rule.builder().id(UUID.randomUUID()).name("rule1").enabled(true).duration(3).build();
     }
-
+    @DisplayName("Test for create rule")
     @Test
     public void givenRule_whenSave_thenReturnRule() {
         
