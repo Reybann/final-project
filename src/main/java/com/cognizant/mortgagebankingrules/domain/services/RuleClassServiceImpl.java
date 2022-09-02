@@ -6,20 +6,19 @@ import org.springframework.stereotype.Service;
 
 import com.cognizant.mortgagebankingrules.domain.Rule;
 import com.cognizant.mortgagebankingrules.domain.repositories.RuleClassRepository;
+
 @Service
-public class RuleDomainService implements RuleClassService {
+public class RuleClassServiceImpl implements RuleClassService {
 
     private final RuleClassRepository repository;
 
-    public RuleDomainService(RuleClassRepository repository) {
+    public RuleClassServiceImpl(RuleClassRepository repository) {
         this.repository = repository;
     }
 
     @Override
-    public Rule createRuleClass(String name, int duration, boolean enabled) {
-        final Rule rule = new Rule(null, name, enabled, duration);
-        repository.save(rule);
-        return rule;
+    public Rule createRuleClass(Rule rule) {
+        return repository.save(rule);
     }
 
     @Override
@@ -38,9 +37,8 @@ public class RuleDomainService implements RuleClassService {
         repository.removeById(id);
     }
 
-
     public Rule getRule(UUID id) {
-       return repository.findById(id).orElseThrow(() -> new IllegalArgumentException("No rule found with id " + id));
+        return repository.findById(id).orElseThrow(() -> new IllegalArgumentException("No rule found with id " + id));
     }
 
 }
