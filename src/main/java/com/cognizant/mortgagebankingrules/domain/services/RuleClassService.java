@@ -6,7 +6,7 @@ import com.cognizant.mortgagebankingrules.domain.RuleClass;
 
 public interface RuleClassService {
     RuleClass createRuleClass(RuleClass rule);
-    RuleClass updateRuleClass(String id, String name, int duration, boolean enabled);
+    RuleClass updateRuleClass(RuleClass rule);
     void removeRuleClass(UUID id);
     RuleClass getRule(UUID id);
 }
