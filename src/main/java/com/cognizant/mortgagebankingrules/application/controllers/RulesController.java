@@ -1,10 +1,14 @@
 package com.cognizant.mortgagebankingrules.application.controllers;
 
 import com.cognizant.mortgagebankingrules.application.response.UpdateRuleResponse;
+
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.cognizant.mortgagebankingrules.application.response.CreateRuleResponse;
+import com.cognizant.mortgagebankingrules.domain.Rule;
+import com.cognizant.mortgagebankingrules.domain.dto.RuleClassDto;
 import com.cognizant.mortgagebankingrules.application.response.RemoveRuleResponse;
 import com.cognizant.mortgagebankingrules.domain.services.RuleClassService;
 
@@ -18,6 +22,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/rules")
 public class RulesController {
 
+    @Autowired
+    private ModelMapper modelMapper;
+
     private final RuleClassService ruleClassService;
 
     @Autowired
@@ -26,8 +33,9 @@ public class RulesController {
     }
 
     @PostMapping(value="/createrule")
-    public CreateRuleResponse createRule(@RequestParam String name, @RequestParam int duration, @RequestParam boolean enabled) {
-        return new CreateRuleResponse(ruleClassService.createRuleClass(name, duration, enabled));
+    public CreateRuleResponse createRule(@RequestBody RuleClassDto ruleClassDto) {
+        Rule rule = modelMapper.map(ruleClassDto, Rule.class);
+        return new CreateRuleResponse(ruleClassService.createRuleClass(rule));
     }
     @PutMapping(value="/updaterule")
     public UpdateRuleResponse updateRule(@RequestParam String id, @RequestParam String name, @RequestParam int duration, @RequestParam boolean enabled){

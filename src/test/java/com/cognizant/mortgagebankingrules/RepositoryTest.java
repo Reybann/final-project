@@ -1,5 +1,6 @@
 package com.cognizant.mortgagebankingrules;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -36,6 +37,14 @@ public class RepositoryTest {
         assertThat(savedRule.getName()).isEqualTo("rule1");
         assertThat(savedRule.isEnabled()).isTrue();
         assertThat(savedRule.getDuration()).isEqualTo(3);
+    }
+
+    @DisplayName("Test find rule")
+    @Test
+    public void givenRule_whenFind_thenReturnRule(){
+        Optional<Rule> foundRule = ruleRepository.findById(rule.getId());
+        System.out.println(rule.toString());
+        assertThat(foundRule).isNotNull();
     }
     
 }
