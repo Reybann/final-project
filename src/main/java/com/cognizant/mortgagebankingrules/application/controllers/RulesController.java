@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.cognizant.mortgagebankingrules.application.response.CreateRuleResponse;
-import com.cognizant.mortgagebankingrules.domain.Rule;
+import com.cognizant.mortgagebankingrules.domain.RuleClass;
 import com.cognizant.mortgagebankingrules.domain.dto.RuleClassDto;
 import com.cognizant.mortgagebankingrules.domain.services.RuleClassService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,12 +31,17 @@ public class RulesController {
 
     @PostMapping(value="/createrule")
     public CreateRuleResponse createRule(@RequestBody RuleClassDto ruleClassDto) {
-        Rule rule = modelMapper.map(ruleClassDto, Rule.class);
+        RuleClass rule = modelMapper.map(ruleClassDto, RuleClass.class);
         return new CreateRuleResponse(ruleClassService.createRuleClass(rule));
     }
     @PutMapping(value="/updaterule")
     public UpdateRuleResponse updateRule(@RequestParam String id, @RequestParam String name, @RequestParam int duration, @RequestParam boolean enabled){
         return new UpdateRuleResponse(ruleClassService.updateRuleClass(id, name, duration, enabled));
+    }
+
+    @GetMapping(value = "/getrule")
+    public RuleClass getRule(@RequestBody RuleClassDto ruleClassDto) {
+        return ruleClassService.getRule(ruleClassDto.getId());
     }
 
 }

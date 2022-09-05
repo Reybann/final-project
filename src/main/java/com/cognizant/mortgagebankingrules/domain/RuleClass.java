@@ -9,6 +9,10 @@ import javax.persistence.Id;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.*;
 
 
@@ -35,6 +39,12 @@ public class RuleClass {
     private int duration;
     @Column(name = "enabled", nullable = false)
     private boolean enabled;
-
-
+    @JsonCreator
+    public RuleClass(@JsonProperty("id") UUID id, @JsonProperty("name") String name,
+            @JsonProperty("enabled") boolean enabled, @JsonProperty("duration") int duration) {
+        this.id = id;
+        this.name = name;
+        this.enabled = enabled;
+        this.duration = duration;
+    }
 }
