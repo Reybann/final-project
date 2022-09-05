@@ -42,7 +42,7 @@ public class RepositoryTest {
     @DisplayName("Test find rule")
     @Test
     public void givenRule_whenFind_thenReturnRule(){
-        Optional<Rule> foundRule = ruleRepository.findById(rule.getId());
+        Optional<RuleClass> foundRule = ruleRepository.findById(rule.getId());
         System.out.println(rule.toString());
         assertThat(foundRule).isNotNull();
     }

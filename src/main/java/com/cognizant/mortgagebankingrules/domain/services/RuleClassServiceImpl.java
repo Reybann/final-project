@@ -23,12 +23,11 @@ public class RuleClassServiceImpl implements RuleClassService {
     }
 
     @Override
-    public RuleClass updateRuleClass(String id, String name, int duration, boolean enabled) {
-        UUID uid = UUID.fromString(id);
-        final RuleClass rule = repository.findById(uid).orElse(new RuleClass(uid, name, enabled, duration));
-        rule.setName(name);
-        rule.setDuration(duration);
-        rule.setEnabled(enabled);
+    public RuleClass updateRuleClass(RuleClass rule) {
+        final RuleClass updatedRule = repository.findById(rule.getId()).orElse(new RuleClass(rule.getId(), rule.getName(), rule.isEnabled(), rule.getDuration()));
+        updatedRule.setName(rule.getName());
+        updatedRule.setDuration(rule.getDuration());
+        updatedRule.setEnabled(rule.isEnabled());
         repository.save(rule);
         return rule;
     }
