@@ -1,5 +1,8 @@
 package com.cognizant.mortgagebankingrules.application.controllers;
 
+import java.util.UUID;
+
+import com.cognizant.mortgagebankingrules.application.response.GetRuleResponse;
 import com.cognizant.mortgagebankingrules.application.response.UpdateRuleResponse;
 
 import org.modelmapper.ModelMapper;
@@ -37,6 +40,12 @@ public class RulesController {
     @PutMapping(value="/updaterule")
     public UpdateRuleResponse updateRule(@RequestParam String id, @RequestParam String name, @RequestParam int duration, @RequestParam boolean enabled){
         return new UpdateRuleResponse(ruleClassService.updateRuleClass(id, name, duration, enabled));
+    }
+
+    @GetMapping(value="/getRuleById")
+    public GetRuleResponse ruleResponse(@RequestParam UUID id){
+        System.out.println("GetRuleResponse");
+        return new GetRuleResponse(ruleClassService.getRule(id));
     }
 
 }
