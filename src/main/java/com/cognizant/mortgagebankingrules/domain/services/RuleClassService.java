@@ -2,11 +2,11 @@ package com.cognizant.mortgagebankingrules.domain.services;
 
 import java.util.UUID;
 
-import com.cognizant.mortgagebankingrules.domain.Rule;
+import com.cognizant.mortgagebankingrules.domain.RuleClass;
 
 public interface RuleClassService {
-    Rule createRuleClass(String name, int duration, boolean enabled);
-    Rule updateRuleClass(String id, String name, int duration, boolean enabled);
+    RuleClass createRuleClass(RuleClass rule);
+    RuleClass updateRuleClass(RuleClass rule);
     void removeRuleClass(UUID id);
-    Rule getRule(UUID id);
+    RuleClass getRule(UUID id);
 }

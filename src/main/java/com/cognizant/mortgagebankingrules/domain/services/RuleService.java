@@ -1,6 +1,6 @@
 package com.cognizant.mortgagebankingrules.domain.services;
 
-import com.cognizant.mortgagebankingrules.domain.Rule;
+import com.cognizant.mortgagebankingrules.domain.RuleClass;
 import com.cognizant.mortgagebankingrules.domain.repositories.RuleClassRepository;
 
 import java.util.UUID;
@@ -13,7 +13,7 @@ public class RuleService {
     }
 
 
-    public UUID createRule(Rule rule){
+    public UUID createRule(RuleClass rule){
 
         repository.save(rule);
         return rule.getId();

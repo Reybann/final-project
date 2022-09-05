@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import com.cognizant.mortgagebankingrules.Application;
 import com.cognizant.mortgagebankingrules.domain.repositories.RuleClassRepository;
 import com.cognizant.mortgagebankingrules.domain.services.RuleClassService;
-import com.cognizant.mortgagebankingrules.domain.services.RuleDomainService;
+import com.cognizant.mortgagebankingrules.domain.services.RuleClassServiceImpl;
 
 
 @Configuration
@@ -15,6 +15,6 @@ import com.cognizant.mortgagebankingrules.domain.services.RuleDomainService;
 public class BeanConfiguration {
         @Bean
         public RuleClassService ruleClassService(final RuleClassRepository repository) {
-                return new RuleDomainService(repository);
+                return new RuleClassServiceImpl(repository);
         }
 }
