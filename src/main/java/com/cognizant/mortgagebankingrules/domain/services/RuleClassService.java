@@ -1,5 +1,7 @@
 package com.cognizant.mortgagebankingrules.domain.services;
 
+import com.cognizant.mortgagebankingrules.domain.RuleClass;
+
 import java.util.UUID;
 
 import com.cognizant.mortgagebankingrules.domain.RuleClass;

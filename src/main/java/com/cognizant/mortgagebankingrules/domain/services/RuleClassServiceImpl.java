@@ -2,6 +2,7 @@ package com.cognizant.mortgagebankingrules.domain.services;
 
 import java.util.UUID;
 
+import com.cognizant.mortgagebankingrules.domain.RuleClass;
 import org.springframework.stereotype.Service;
 
 import com.cognizant.mortgagebankingrules.domain.RuleClass;

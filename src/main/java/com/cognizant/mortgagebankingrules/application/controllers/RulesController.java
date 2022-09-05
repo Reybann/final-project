@@ -1,6 +1,6 @@
 package com.cognizant.mortgagebankingrules.application.controllers;
 
-import java.util.UUID;
+import com.cognizant.mortgagebankingrules.application.response.UpdateRuleResponse;
 
 import com.cognizant.mortgagebankingrules.application.response.GetRuleResponse;
 import com.cognizant.mortgagebankingrules.application.response.UpdateRuleResponse;
@@ -16,6 +16,8 @@ import com.cognizant.mortgagebankingrules.domain.services.RuleClassService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.UUID;
 
 
 @RestController
@@ -50,7 +52,6 @@ public class RulesController {
 
     @GetMapping(value="/{id}")
     public GetRuleResponse ruleResponse(@RequestParam UUID id){
-        System.out.println("GetRuleResponse");
         return new GetRuleResponse(ruleClassService.getRule(id));
     }
 
