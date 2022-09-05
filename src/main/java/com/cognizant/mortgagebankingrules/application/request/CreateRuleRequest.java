@@ -24,9 +24,5 @@ public class CreateRuleRequest {
     public boolean isEnabled() {
         return enabled;
     }
-
-    public RuleClass getRule() {
-        return null;
-    }
     
 }
