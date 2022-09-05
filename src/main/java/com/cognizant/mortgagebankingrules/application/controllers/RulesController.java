@@ -35,8 +35,9 @@ public class RulesController {
         return new CreateRuleResponse(ruleClassService.createRuleClass(rule));
     }
     @PutMapping(value="/updaterule")
-    public UpdateRuleResponse updateRule(@RequestParam String id, @RequestParam String name, @RequestParam int duration, @RequestParam boolean enabled){
-        return new UpdateRuleResponse(ruleClassService.updateRuleClass(id, name, duration, enabled));
+    public UpdateRuleResponse updateRule(@RequestBody RuleClassDto ruleClassDto){
+        RuleClass rule = modelMapper.map(ruleClassDto, RuleClass.class);
+        return new UpdateRuleResponse(ruleClassService.updateRuleClass(rule));
     }
 
     @GetMapping(value = "/getrule")
