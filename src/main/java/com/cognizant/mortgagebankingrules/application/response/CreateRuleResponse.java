@@ -1,17 +1,17 @@
 package com.cognizant.mortgagebankingrules.application.response;
 
 
-import com.cognizant.mortgagebankingrules.domain.Rule;
+import com.cognizant.mortgagebankingrules.domain.RuleClass;
 
 public class CreateRuleResponse {
 
-   final  Rule rule;
+   final  RuleClass rule;
 
-    public CreateRuleResponse(Rule rule) {
+    public CreateRuleResponse(RuleClass rule) {
         this.rule = rule;
     }
     
-    public Rule getRule() {
+    public RuleClass getRule() {
         return rule;
     }
 }

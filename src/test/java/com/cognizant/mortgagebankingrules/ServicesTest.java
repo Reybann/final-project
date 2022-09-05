@@ -3,6 +3,7 @@ package com.cognizant.mortgagebankingrules;
 import java.util.Optional;
 import java.util.UUID;
 
+import com.cognizant.mortgagebankingrules.domain.RuleClass;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,7 +14,7 @@ import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import com.cognizant.mortgagebankingrules.domain.Rule;
+
 import com.cognizant.mortgagebankingrules.domain.repositories.RuleClassRepository;
 import com.cognizant.mortgagebankingrules.domain.services.RuleClassServiceImpl;
 import static org.mockito.BDDMockito.given;
@@ -27,11 +28,11 @@ public class ServicesTest {
     @InjectMocks
     private RuleClassServiceImpl service;
 
-    private Rule rule;
+    private RuleClass rule;
 
     @BeforeEach
     public void setUp() {
-        rule = Rule.builder().id(UUID.randomUUID()).name("rule1").enabled(true).duration(3).build();
+        rule = RuleClass.builder().id(UUID.randomUUID()).name("rule1").enabled(true).duration(3).build();
     }
 
     @MockitoSettings(strictness = Strictness.WARN)
@@ -44,7 +45,7 @@ public class ServicesTest {
         System.out.println(service);
         System.out.println(rule);
 
-        Rule savedRule = service.createRuleClass(rule);
+        RuleClass savedRule = service.createRuleClass(rule);
 
         assertThat(savedRule).isNotNull();
 

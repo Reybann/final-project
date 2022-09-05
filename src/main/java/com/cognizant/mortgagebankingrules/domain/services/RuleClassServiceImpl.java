@@ -2,9 +2,9 @@ package com.cognizant.mortgagebankingrules.domain.services;
 
 import java.util.UUID;
 
+import com.cognizant.mortgagebankingrules.domain.RuleClass;
 import org.springframework.stereotype.Service;
 
-import com.cognizant.mortgagebankingrules.domain.Rule;
 import com.cognizant.mortgagebankingrules.domain.repositories.RuleClassRepository;
 
 @Service
@@ -17,14 +17,14 @@ public class RuleClassServiceImpl implements RuleClassService {
     }
 
     @Override
-    public Rule createRuleClass(Rule rule) {
+    public RuleClass createRuleClass(RuleClass rule) {
         return repository.save(rule);
     }
 
     @Override
-    public Rule updateRuleClass(String id, String name, int duration, boolean enabled) {
+    public RuleClass updateRuleClass(String id, String name, int duration, boolean enabled) {
         UUID uid = UUID.fromString(id);
-        final Rule rule = repository.findById(uid).orElse(new Rule(uid, name, enabled, duration));
+        final RuleClass rule = repository.findById(uid).orElse(new RuleClass(uid, name, enabled, duration));
         rule.setName(name);
         rule.setDuration(duration);
         rule.setEnabled(enabled);
@@ -37,8 +37,11 @@ public class RuleClassServiceImpl implements RuleClassService {
         repository.removeById(id);
     }
 
-    public Rule getRule(UUID id) {
-        return repository.findById(id).orElseThrow(() -> new IllegalArgumentException("No rule found with id " + id));
+    public RuleClass getRuleClass(String id) {
+        UUID uid = UUID.fromString(id);
+        System.out.println("ID: "+id);
+        System.out.println("UID: "+uid);
+        return repository.findById(uid).orElseThrow(() -> new IllegalArgumentException("No rule found with id " + id));
     }
 
 }

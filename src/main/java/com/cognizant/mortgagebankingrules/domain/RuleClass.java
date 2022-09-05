@@ -1,15 +1,18 @@
 package com.cognizant.mortgagebankingrules.domain;
 
-import java.util.UUID;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
-import lombok.*;
+import java.util.UUID;
 
 
 @Getter
@@ -19,10 +22,8 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @EqualsAndHashCode
-
 @Entity
 public class RuleClass {
-
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
@@ -37,4 +38,12 @@ public class RuleClass {
     private boolean enabled;
 
 
+    @JsonCreator
+    public RuleClass(@JsonProperty("id") UUID id, @JsonProperty("name") String name,
+                     @JsonProperty("enabled") boolean enabled, @JsonProperty("duration") int duration) {
+        this.id = id;
+        this.name = name;
+        this.enabled = enabled;
+        this.duration = duration;
+    }
 }

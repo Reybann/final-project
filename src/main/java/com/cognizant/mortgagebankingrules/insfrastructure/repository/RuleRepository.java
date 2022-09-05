@@ -2,11 +2,10 @@ package com.cognizant.mortgagebankingrules.insfrastructure.repository;
 
 import java.util.UUID;
 
+import com.cognizant.mortgagebankingrules.domain.RuleClass;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.cognizant.mortgagebankingrules.domain.Rule;
-
-public interface RuleRepository extends JpaRepository<Rule, UUID> {
+public interface RuleRepository extends JpaRepository<RuleClass, UUID> {
 
 
 }
