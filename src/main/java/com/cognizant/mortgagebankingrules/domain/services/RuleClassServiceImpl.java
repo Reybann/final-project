@@ -2,6 +2,9 @@ package com.cognizant.mortgagebankingrules.domain.services;
 
 import java.util.UUID;
 
+import javax.transaction.Transactional;
+
+import com.cognizant.mortgagebankingrules.domain.RuleClass;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,11 +21,13 @@ public class RuleClassServiceImpl implements RuleClassService {
     }
 
     @Override
+    @Transactional
     public RuleClass createRuleClass(RuleClass rule) {
         return repository.save(rule);
     }
 
     @Override
+    @Transactional
     public RuleClass updateRuleClass(RuleClass rule) {
         final RuleClass updatedRule = repository.findById(rule.getId()).orElse(new RuleClass(rule.getId(), rule.getName(), rule.isEnabled(), rule.getDuration()));
         updatedRule.setName(rule.getName());

@@ -1,5 +1,6 @@
 package com.cognizant.mortgagebankingrules;
 
+import com.cognizant.mortgagebankingrules.domain.RuleClass;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;

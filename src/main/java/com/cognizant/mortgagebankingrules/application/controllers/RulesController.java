@@ -2,6 +2,10 @@ package com.cognizant.mortgagebankingrules.application.controllers;
 
 import com.cognizant.mortgagebankingrules.application.response.UpdateRuleResponse;
 
+
+import com.cognizant.mortgagebankingrules.application.response.GetRuleResponse;
+import com.cognizant.mortgagebankingrules.application.response.UpdateRuleResponse;
+
 import java.util.UUID;
 
 import org.modelmapper.ModelMapper;
@@ -19,6 +23,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
+
+
 @RestController
 @RequestMapping("/rules")
 public class RulesController {
@@ -33,21 +39,27 @@ public class RulesController {
         this.ruleClassService = ruleClassService;
     }
 
-    @PostMapping(value="/createrule")
+    @PostMapping(value="/")
     public CreateRuleResponse createRule(@RequestBody RuleClassDto ruleClassDto) {
         RuleClass rule = modelMapper.map(ruleClassDto, RuleClass.class);
         return new CreateRuleResponse(ruleClassService.createRuleClass(rule));
     }
-    @PutMapping(value="/updaterule")
+    @PutMapping(value="/")
     public UpdateRuleResponse updateRule(@RequestBody RuleClassDto ruleClassDto){
         RuleClass rule = modelMapper.map(ruleClassDto, RuleClass.class);
         return new UpdateRuleResponse(ruleClassService.updateRuleClass(rule));
     }
 
-    @GetMapping(value = "/getrule")
+    @GetMapping(value = "/")
     public RuleClass getRule(@RequestBody RuleClassDto ruleClassDto) {
         return ruleClassService.getRule(ruleClassDto.getId());
     }
+
+    @GetMapping(value="/{id}")
+    public GetRuleResponse ruleResponse(@RequestParam UUID id){
+        return new GetRuleResponse(ruleClassService.getRule(id));
+    }
+
 
     @DeleteMapping(value="/removerule")
     public void deleteRule(@RequestParam UUID id) {

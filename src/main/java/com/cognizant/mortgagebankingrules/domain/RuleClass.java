@@ -1,5 +1,13 @@
 package com.cognizant.mortgagebankingrules.domain;
 
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import lombok.*;
+
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -15,7 +23,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.*;
 
-
 @Getter
 @Setter
 @ToString
@@ -23,10 +30,8 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @EqualsAndHashCode
-
 @Entity
 public class RuleClass {
-
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
@@ -39,6 +44,7 @@ public class RuleClass {
     private int duration;
     @Column(name = "enabled", nullable = false)
     private boolean enabled;
+
     @JsonCreator
     public RuleClass(@JsonProperty("id") UUID id, @JsonProperty("name") String name,
             @JsonProperty("enabled") boolean enabled, @JsonProperty("duration") int duration) {
