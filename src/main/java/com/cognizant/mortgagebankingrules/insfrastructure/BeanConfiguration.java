@@ -9,7 +9,6 @@ import com.cognizant.mortgagebankingrules.domain.repositories.RuleClassRepositor
 import com.cognizant.mortgagebankingrules.domain.services.RuleClassService;
 import com.cognizant.mortgagebankingrules.domain.services.RuleClassServiceImpl;
 
-
 @Configuration
 @ComponentScan(basePackageClasses = Application.class)
 public class BeanConfiguration {
