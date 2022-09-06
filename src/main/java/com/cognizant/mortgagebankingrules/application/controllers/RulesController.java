@@ -66,10 +66,4 @@ public class RulesController {
         this.ruleClassService.removeRuleClass(id);
     }
 
-    // @DeleteMapping(value="/removerule")
-    // public RemoveRuleResponse deleteRule(@RequestParam UUID id) {
-    //     return new RemoveRuleResponse(ruleClassService.removeRuleClass(id));
-    // }
-
-
 }
