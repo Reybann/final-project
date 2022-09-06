@@ -35,8 +35,6 @@ public class RuleClassServiceImpl implements RuleClassService {
     @Override
     @Transactional
     public void removeRuleClass(UUID id) {
-        // UUID uuid = UUID.fromString(id);
-        // final String rule = repository.findById(uuid);
         repository.removeById(id);
     }
 
