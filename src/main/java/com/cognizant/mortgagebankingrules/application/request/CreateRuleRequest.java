@@ -1,6 +1,5 @@
 package com.cognizant.mortgagebankingrules.application.request;
 
-import com.cognizant.mortgagebankingrules.domain.RuleClass;
 import com.fasterxml.jackson.annotation.JsonCreator;
 
 public class CreateRuleRequest {
@@ -18,15 +17,13 @@ public class CreateRuleRequest {
     public String getName() {
         return name;
     }
+
     public int getDuration() {
         return duration;
     }
+
     public boolean isEnabled() {
         return enabled;
     }
 
-    public RuleClass getRule() {
-        return null;
-    }
-    
 }
