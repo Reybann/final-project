@@ -8,12 +8,12 @@ import java.util.UUID;
 public class RuleService {
 
     private final RuleClassRepository repository;
-    public RuleService(RuleClassRepository repository){
-        this.repository=repository;
+
+    public RuleService(RuleClassRepository repository) {
+        this.repository = repository;
     }
 
-
-    public UUID createRule(RuleClass rule){
+    public UUID createRule(RuleClass rule) {
 
         repository.save(rule);
         return rule.getId();

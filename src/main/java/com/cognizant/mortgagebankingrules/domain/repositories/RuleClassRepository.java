@@ -9,8 +9,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RuleClassRepository extends JpaRepository<RuleClass,Long> {
+public interface RuleClassRepository extends JpaRepository<RuleClass, Long> {
+    @SuppressWarnings("unchecked")
     RuleClass save(RuleClass rule);
+
     Optional<RuleClass> findById(UUID id);
+
     void removeById(UUID id);
 }

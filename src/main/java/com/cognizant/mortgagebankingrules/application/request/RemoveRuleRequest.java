@@ -5,7 +5,7 @@ import java.util.UUID;
 import com.fasterxml.jackson.annotation.JsonCreator;
 
 public class RemoveRuleRequest {
-    
+
     private UUID id;
 
     @JsonCreator

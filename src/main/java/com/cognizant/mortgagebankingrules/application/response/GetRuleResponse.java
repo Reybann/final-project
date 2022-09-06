@@ -8,7 +8,7 @@ public class GetRuleResponse {
 
     private final RuleClass rule;
 
-    public GetRuleResponse(RuleClass rule){
+    public GetRuleResponse(RuleClass rule) {
         this.rule = rule;
     }
 
