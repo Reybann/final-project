@@ -3,6 +3,7 @@ package com.cognizant.mortgagebankingrules.domain.services;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cognizant.mortgagebankingrules.domain.RuleClass;
 import com.cognizant.mortgagebankingrules.domain.repositories.RuleClassRepository;
@@ -32,7 +33,10 @@ public class RuleClassServiceImpl implements RuleClassService {
     }
 
     @Override
+    @Transactional
     public void removeRuleClass(UUID id) {
+        // UUID uuid = UUID.fromString(id);
+        // final String rule = repository.findById(uuid);
         repository.removeById(id);
     }
 

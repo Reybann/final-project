@@ -2,6 +2,8 @@ package com.cognizant.mortgagebankingrules.application.controllers;
 
 import com.cognizant.mortgagebankingrules.application.response.UpdateRuleResponse;
 
+import java.util.UUID;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +12,8 @@ import com.cognizant.mortgagebankingrules.application.response.CreateRuleRespons
 import com.cognizant.mortgagebankingrules.domain.RuleClass;
 import com.cognizant.mortgagebankingrules.domain.dto.RuleClassDto;
 import com.cognizant.mortgagebankingrules.domain.services.RuleClassService;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,5 +48,15 @@ public class RulesController {
     public RuleClass getRule(@RequestBody RuleClassDto ruleClassDto) {
         return ruleClassService.getRule(ruleClassDto.getId());
     }
+
+    @DeleteMapping(value="/removerule")
+    public void deleteRule(@RequestParam UUID id) {
+        this.ruleClassService.removeRuleClass(id);
+    }
+
+    // @DeleteMapping(value="/removerule")
+    // public RemoveRuleResponse deleteRule(@RequestParam UUID id) {
+    //     return new RemoveRuleResponse(ruleClassService.removeRuleClass(id));
+    // }
 
 }
