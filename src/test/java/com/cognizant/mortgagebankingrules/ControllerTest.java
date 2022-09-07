@@ -33,7 +33,7 @@ public class ControllerTest {
 
                 Mockito.when(ruleService.createRuleClass(rule)).thenReturn(rule);
 
-                mockMvc.perform(post("/rules/createrule").contentType("application/json").content(
+                mockMvc.perform(post("/rules/").contentType("application/json").content(
                                 "{\"id\":\"" + rule.getId() + "\",\"name\":\"" + rule.getName() + "\",\"enabled\":\""
                                                 + rule.isEnabled()
                                                 + "\",\"duration\":\"" + rule.getDuration() + "\"}"))
@@ -48,7 +48,7 @@ public class ControllerTest {
 
                 Mockito.when(ruleService.createRuleClass(rule)).thenReturn(rule);
 
-                mockMvc.perform(post("/rules/createrule").contentType("application/json").content(
+                mockMvc.perform(post("/rules/").contentType("application/json").content(
                                 "{\"id\":\"" + rule.getId() + "\",\"name\":\"" + rule.getName() + "\",\"enabled\":\""
                                                 + rule.isEnabled()
                                                 + "\",\"duration\":\"" + "rule.getDuration()" + "\"}"))
