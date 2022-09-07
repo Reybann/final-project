@@ -2,7 +2,7 @@ package com.cognizant.mortgagebankingrules.application.response;
 
 import java.util.UUID;
 
-public class RemoveRuleResponse{
+public class RemoveRuleResponse {
 
     private final UUID id;
 
