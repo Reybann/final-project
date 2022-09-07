@@ -4,10 +4,11 @@ import java.util.UUID;
 
 import com.cognizant.mortgagebankingrules.domain.RuleClass;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.cognizant.mortgagebankingrules.domain.RuleClass;
 import com.cognizant.mortgagebankingrules.domain.repositories.RuleClassRepository;
+import org.springframework.transaction.annotation.Transactional;
+
 
 @Service
 public class RuleClassServiceImpl implements RuleClassService {
