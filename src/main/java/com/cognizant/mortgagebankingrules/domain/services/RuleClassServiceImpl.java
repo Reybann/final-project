@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.cognizant.mortgagebankingrules.domain.RuleClass;
 import com.cognizant.mortgagebankingrules.domain.repositories.RuleClassRepository;
 
+import javax.transaction.Transactional;
+
 @Service
 public class RuleClassServiceImpl implements RuleClassService {
 
