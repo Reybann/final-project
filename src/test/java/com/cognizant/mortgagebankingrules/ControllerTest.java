@@ -11,6 +11,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.cognizant.mortgagebankingrules.application.controllers.RulesController;
 import com.cognizant.mortgagebankingrules.domain.services.RuleClassService;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.UUID;
@@ -66,5 +67,16 @@ public class ControllerTest {
                                                 + rule.isEnabled()
                                                 + "\",\"duration\":\"" + rule.getDuration() + "\"}"))
                                 .andExpect(status().isNotFound());
+        }
+
+        @Test
+        public void testRemoveRule() throws Exception {
+
+                RuleClass rule = RuleClass.builder().id(UUID.randomUUID()).name("rule1").enabled(true).duration(3)
+                                .build();
+
+                Mockito.when(ruleService.createRuleClass(rule)).thenReturn(rule);
+                mockMvc.perform(delete("/rules/" + "?id=" + rule.getId()))
+                .andExpect(status().isOk());
         }
 }
